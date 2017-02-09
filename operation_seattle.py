@@ -9,23 +9,25 @@ name = raw_input("What's your name? ")
 
 time.sleep(1)
 
-print "Hey " + name + " what do you want to do today?"
+print "Hey " + name + "!"
 
 time.sleep (1)
 
 
 def pikes_place():
     time.sleep(1)
-    print "What should we eat first!"
+    print "What should we eat first?"
     breakfast = raw_input("""
             donuts
             coffee
             lox bagel
             divide and conquer
-            let's decide after coffee""")
+            let's decide after coffee
+            """)
     time.sleep(1)
     print "yum, good choice"
     time.sleep(1)
+#Add go to library, add book to items
 
 def waterfall_hike():
     time.sleep(1)
@@ -40,21 +42,24 @@ def pie_bar():
         print "Seriously? Only one slice?"
         time.sleep (1)
         pie_bar()
-    if pie_decision == 'both':
+    elif pie_decision == 'both':
         print "I knew we were friends for a reason"
     else:
         print "try again"
         time.sleep (1)
         pie_bar()
+#Add pie for later to items
 
 def out_of_city():
     print "still working on this activity"
 
 def lazy_day():
     print "still working on this activity"
+#add madlibs activity
 
 def choose_activity():
-    actvity = raw_input("""
+    print "What do you want to do today?"
+    activity = raw_input("""
     Hang out at Pikes Place
     Waterfall Hike
     PieBar
@@ -72,6 +77,9 @@ def choose_activity():
     elif activity == 'lazy day inside':
         print lazy_day()
 
+#Need to figure out how to do loop including exit
+#Add transition between activities
+#Dictionary with items you've picked up
 choose_activity()
 choose_activity()
 choose_activity()
@@ -79,6 +87,6 @@ choose_activity()
 choose_activity()
 choose_activity()
 
-print "Finished"
+
 
 
