@@ -79,4 +79,6 @@ choose_activity()
 choose_activity()
 choose_activity()
 
+print "Finished"
+
 
