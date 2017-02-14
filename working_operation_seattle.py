@@ -17,10 +17,11 @@ print "Hey " + name + "!" " Welcome to Seattle."
 print "I made a list of things for us to do today."
 print "Let's start crossing activities off!"
 print "If want to exit the game just type 'time to go home'." 
-print ""
+
 
 raw_input()
 
+print ""
 print "You might find some items lying around Seattle."
 print "If you want to save anything for later, put it your backpack."
 
@@ -31,7 +32,6 @@ def add_to_backpack(item):
     item.lower()
     if item not in backpack:
         backpack.append(item)
-        print "Added!"
         print "Here's what you have in your backpack:"
         print backpack
     else:
@@ -49,33 +49,37 @@ def countdown(n):
 #doesn't work if computer guesses correctly
 def what_odds():
     
-    print ""
     print "The odds are 1 in..."
     
     odds = int(raw_input())
-    random_num  = random.randrange(1, odds)
+    if odds == 1:
+        print "One in one! Ok I'm in."
+    else:
+        random_num  = random.randrange(1, odds)
+        print "Wait for the countdown then type your number!"
     
-    print "Wait for the countdown then type your number!"
+        countdown(3)
+        number = int(raw_input())
+        print random_num
     
-    countdown(3)
-    number = int(raw_input())
-    print random_num
-    
-    if random_num == number:
-        print "I win!"
-    elif random_num != number:
-        print "Gosh darn it"
-    raw_input()
+   
+        if number in range (0, odds):
+            if random_num == number:
+                print "I win!"
+            elif random_num != number:
+                print "Gosh darn it"
+        else:
+            print "You can't pick that number!"
+            what_odds()
+            raw_input()
 
 #pikes place activity description
 def pikes_place():
-    print ""
     print "Where should we get food?"
     print "mini donuts at Daily Dozen Donuts"
     print "coffee and macaroons at Le Panier"
     print "cheddar and garlic roll piroshky at Piroshky Piroshky"
     print "the lox bagel cart"
-    print ""
     
     breakfast = raw_input()
     
@@ -84,7 +88,6 @@ def pikes_place():
     raw_input()
    
     print "What are the odds you'll buy us Hello Robin later?"
-    print ""
     
     what_odds()
     
@@ -93,15 +96,13 @@ def pikes_place():
     souvenir = raw_input("What should we get from Pike's Place? ")
     add_to_backpack(souvenir)
     
-    print "Ok, what's next!"
+    print "Ok, what's next! "
     
     main()
 
 #yoga activity description
 def yoga():
-    time.sleep(1)
-    print ""
-    print "What yoga class do you want to take?"
+    print "Which yoga class do you want to take?"
     print "C1 (easier)"
     print "C2 (harder)"
     yoga_class = raw_input().lower()
@@ -110,7 +111,7 @@ def yoga():
         print "Here is your C1 yoga flow"
         print "(press any button when finished)"
         raw_input()
-        print "Start in child's pose"
+        print "Start in downward facing"
         print "Three legged dog"
         print "Proud pigeon"
         print "Sleeping pigeon"
@@ -144,20 +145,18 @@ def library_card():
     name = raw_input("What is your name? ")
     address = raw_input("What is your address? ")
     birthday = raw_input("What's your birth date? ")
-    print ""
-    print "  ----------------------------------    "
-    print " |      SEATTLE LIBRARY CARD        |   "
-    print " |                                  |   "
-    print "          " + name + "                  "
-    print "         " + address + "                "
-    print "          " + birthday + "              "
-    print " |                                  |   "
-    print " |                                  |   "
-    print "  ----------------------------------    "
+    print "   ----------------------------------    "
+    print "  |      SEATTLE LIBRARY CARD        |   "
+    print "  |                                  |   "
+    print "           " + name + "                  "
+    print "           " + address + "               "
+    print "           " + birthday + "              "
+    print "  |                                  |   "
+    print "  |                                  |   "
+    print "   ----------------------------------    "
 
 #library activity description
 def library():
-    print ""
     print "Welcome to the Seattle library!"
     print "First, you need to register for a library card"
     library_card()
@@ -168,8 +167,55 @@ def library():
     main()
 
 def hike():
-    print "still working on this activity"
+    print "What hike should we do?"
+    print "Rattlesnake Ledge"
+    print "Mt. Pilchuck"
+    print "Kendal Katwalk"
+    print "Maple Pass Loop"
+    trail = raw_input()
+
+    print "Off we go to the " + trail + " trail!"
+
+    print "What are the odds you'll jump in the waterfall?"
+    what_odds()
+
+    print "Look how cool these rocks are! Let's bring some home."
+    rocks = trail + " rocks"
+    add_to_backpack(rocks)
     main()
+
+def answer():
+    print "The note says"
+    print "."
+    time.sleep (1)
+    print "."
+    time.sleep (1)
+    print "."
+    time.sleep (1)
+    print "Dear " + name + ","
+    print ""
+    print "Will you be my boyfriend?"
+    print "yes[ ]"
+    print "no [ ]"
+    print ""
+    answer = raw_input()
+    if answer == 'no':
+        print "Well this is awkward"
+    elif answer == 'yes':
+        print "I knew you were gunna say that"
+    else:
+        print "Um I haven't programmed that answer yet..."
+        answer()
+
+def folded_note():
+    print "Should we toss it or open it?"
+    action = raw_input().lower()
+    if action == 'toss':
+        print "Are you sure you want to do that?"
+        print "Could be important."
+        folded_note()
+    elif action == 'open' or action == 'open it':
+        answer()
 
 #choose activity in main function
 def choose_activity():
@@ -178,26 +224,35 @@ def choose_activity():
     return activity 
 
 def main():
-    while seattle_list > 0:
+    while len(seattle_list) > 0:
         activity = choose_activity()
-        if activity == 'grab food at pikes place':
+        if seattle_list == 0:
+            print "You've complete the list! Successful day in Seattle"
+        elif activity == 'grab food at pikes place':
             seattle_list.remove("Grab food at Pike's Place")
-            print ""
             print pikes_place()
         elif activity == 'head to yoga':
             seattle_list.remove("Head to Yoga")
-            print ""
             print yoga()
         elif activity == 'visit the seattle library':
             seattle_list.remove("Visit the Seattle Library")
-            print ""
             print library()
         elif activity == 'go for a hike':
             seattle_list.remove("Go for a hike")
-            print ""
             print hike()
         elif activity == 'time to go home':
+            print "See you next time!"
             break
-    print "You've complete the list! Successful day in Seattle"
-        break
+        else:
+            print "I don't think that's on the list"
+    else:
+        print "You've completed all the activities for the day!"
+        print "Let's see what we've collected in our backpack"
+        raw_input()
+        add_to_backpack("folded peice of paper")
+        print backpack
+        print "That's weird, where did that peice of paper come from?"
+        folded_note()
+        quit()
+
 main()
